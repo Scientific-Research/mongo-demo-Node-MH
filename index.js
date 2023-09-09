@@ -34,10 +34,19 @@ const createCourse = async () => {
 // createCourse();
 
 const getCourses = async () => {
-  const courses = await Course.find()
-    .or([{ author: "Mosh" }, { isPublished: true }])
-    .and([])
+  const courses = await Course
     //.find({ author: "Mosh", isPublished: true })
+    // Moshfegh
+    // Mosh Hamedani
+
+    // Starts with Mosh:
+    .find({ author: /^Mosh/ })
+    // Ends with Hamedani
+    .find({ author: /Hamedani$/i })
+
+    //.find()
+    //     .or([{ author: "Mosh" }, { isPublished: true }])
+    //     .and([])
     // .find({ price: { $gte: 10, lte: 20 } })
     // .find({ price: { $in: [10, 15, 20] } })
     .limit(10)
