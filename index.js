@@ -34,17 +34,16 @@ const createCourse = async () => {
 // createCourse();
 
 const getCourses = async () => {
-  const courses = await Course
-    //.find({ author: "Mosh", isPublished: true })
+  const courses = await Course.find({ author: "Mosh", isPublished: true })
     // Moshfegh
     // Mosh Hamedani
     /////////////////////////////////////////////////
-    // Starts with Mosh:
-    .find({ author: /^Mosh/ })
-    // Ends with Hamedani
-    .find({ author: /Hamedani$/i })
-    // Contains Mosh
-    .find({ author: /.*Mosh.*/i })
+    // // Starts with Mosh:
+    // .find({ author: /^Mosh/ })
+    // // Ends with Hamedani
+    // .find({ author: /Hamedani$/i })
+    // // Contains Mosh
+    // .find({ author: /.*Mosh.*/i })
     /////////////////////////////////////////////////
     //.find()
     //     .or([{ author: "Mosh" }, { isPublished: true }])
@@ -53,7 +52,11 @@ const getCourses = async () => {
     // .find({ price: { $in: [10, 15, 20] } })
     .limit(10)
     .sort({ name: -1 }) // 1: Ascending -1: Descending
-    .select({ name: 1, tags: 1, author: 1 });
+    // .select({ name: 1, tags: 1, author: 1 });
+
+    /////////////////////////////////////////////////
+    // Counting the items:
+    .count();
   console.log(courses);
 };
 
