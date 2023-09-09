@@ -34,7 +34,13 @@ const createCourse = async () => {
 // createCourse();
 
 const getCourses = async () => {
+  /////////////////////////////////////////////////Pagination
+  const pageNumber = 2;
+  const pageSize = 10;
+  //  /api/courses?pageNumber=2&pageSize=10
+  /////////////////////////////////////////////////
   const courses = await Course.find({ author: "Mosh", isPublished: true })
+    .skip((pageNumber - 1) * pageSize)
     // Moshfegh
     // Mosh Hamedani
     /////////////////////////////////////////////////
@@ -50,13 +56,17 @@ const getCourses = async () => {
     //     .and([])
     // .find({ price: { $gte: 10, lte: 20 } })
     // .find({ price: { $in: [10, 15, 20] } })
-    .limit(10)
+    /////////////////////////////////////////////////
+    // .limit(10)
+    .limit(pageSize)
     .sort({ name: -1 }) // 1: Ascending -1: Descending
     // .select({ name: 1, tags: 1, author: 1 });
 
     /////////////////////////////////////////////////
     // Counting the items:
     .count();
+  /////////////////////////////////////////////////
+
   console.log(courses);
 };
 
