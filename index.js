@@ -44,7 +44,7 @@ const getCourses = async () => {
     // Ends with Hamedani
     .find({ author: /Hamedani$/i })
     // Contains Mosh
-    .find({ author: /.*Mosh.*/ })
+    .find({ author: /.*Mosh.*/i })
     /////////////////////////////////////////////////
     //.find()
     //     .or([{ author: "Mosh" }, { isPublished: true }])
