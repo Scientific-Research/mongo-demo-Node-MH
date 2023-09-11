@@ -104,6 +104,36 @@ const updateCourse = async (id) => {
   console.log(course);
 };
 
+const removeCourse = async (id) => {
+  //Approch: Query first
+  // findById()
+  // Modify its properties
+  // Save()
+  ///////////////////////////////////////
+  // Approch: Update first
+  // Update directly
+  // Optionally: get the updated document
+
+  // const result = await Course.deleteOne({ _id: id });
+  // const result = await Course.deleteMany({ _id: id }); // resturns the number of documents
+  const course = await Course.findByIdAndRemove(id);
+  // which were deleted.
+
+  // if (!course) return;
+
+  // course.isPublished = true;
+  // course.author = "Maximilian ";
+
+  // the two methods are identical
+  // course.set({
+  //   isPublished: true,
+  //   author: "Another Author",
+  // });
+
+  // const result = await course.save();
+  console.log(course);
+};
+
 // getCourses();
-updateCourse("64fb94c3dde5e43b7d5adc78");
+removeCourse("64ff326a0244847a408a7091");
 // updateCourse();
