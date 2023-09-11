@@ -79,11 +79,20 @@ const updateCourse = async (id) => {
   // Update directly
   // Optionally: get the updated document
 
-  const course = await Course.findById(id);
-  if (!course) return;
+  const course = await Course.findByIdAndUpdate(
+    id,
+    {
+      $set: {
+        isPublished: false,
+        author: "Nikola Tesla",
+      },
+    },
+    { new: true }
+  );
+  // if (!course) return;
 
-  course.isPublished = true;
-  course.author = "Maximilian ";
+  // course.isPublished = true;
+  // course.author = "Maximilian ";
 
   // the two methods are identical
   // course.set({
@@ -91,9 +100,10 @@ const updateCourse = async (id) => {
   //   author: "Another Author",
   // });
 
-  const result = await course.save();
-  console.log(result);
+  // const result = await course.save();
+  console.log(course);
 };
 
 // getCourses();
-updateCourse("64fb9535cc24af78bf3858b7");
+updateCourse("64fb94c3dde5e43b7d5adc78");
+// updateCourse();
