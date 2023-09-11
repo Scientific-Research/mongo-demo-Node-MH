@@ -15,7 +15,12 @@ const courseSchema = new mongoose.Schema({
 		default: Date.now,
 	},
 	isPublished: Boolean,
-	price: Number,
+	price: {
+		type: Number,
+		required: function () {
+			return this.isPublished;
+		},
+	},
 });
 // Models
 const Course = mongoose.model("Course", courseSchema);
@@ -25,7 +30,7 @@ const createCourse = async () => {
 		author: "Mosh",
 		tags: ["angular", "frontend"],
 		isPublished: true,
-		price: 15,
+		// price: 15,
 	});
 	try {
 		const result = await course.save();
