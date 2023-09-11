@@ -7,7 +7,18 @@ mongoose
 // Schema
 const courseSchema = new mongoose.Schema({
 	// name: String,
-	name: { type: String, required: true },
+	name: {
+		type: String,
+		required: true,
+		minlength: 5,
+		maxlength: 255,
+		// match: /pattern/
+	},
+	category: {
+		type: String,
+		required: true,
+		enum: ["web", "mobile", "network"],
+	},
 	author: String,
 	tags: [String],
 	date: {
@@ -20,17 +31,20 @@ const courseSchema = new mongoose.Schema({
 		required: function () {
 			return this.isPublished;
 		},
+		min: 10,
+		max: 200,
 	},
 });
 // Models
 const Course = mongoose.model("Course", courseSchema);
 const createCourse = async () => {
 	const course = new Course({
-		// name: "Angular Course",
+		name: "Angular Course",
+		category: "-",
 		author: "Mosh",
 		tags: ["angular", "frontend"],
 		isPublished: true,
-		// price: 15,
+		price: 15,
 	});
 	try {
 		const result = await course.save();
