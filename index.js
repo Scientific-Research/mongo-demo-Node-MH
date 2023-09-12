@@ -56,7 +56,8 @@ const Course = mongoose.model("Course", courseSchema);
 const createCourse = async () => {
 	const course = new Course({
 		name: "Express Course",
-		category: "network",
+		// category: "network",
+		category: "sdlfjhlsk",
 		author: "Maxi",
 		tags: null,
 		isPublished: true,
@@ -66,7 +67,11 @@ const createCourse = async () => {
 		const result = await course.save();
 		console.log(result);
 	} catch (ex) {
-		console.log(ex.message);
+		// console.log(ex.message);
+		// ex.errors;
+		for (const field in ex.errors) {
+			console.log(ex.errors[field].message);
+		}
 	}
 };
 // createCourse();
