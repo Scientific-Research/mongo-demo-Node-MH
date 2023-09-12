@@ -57,7 +57,7 @@ const createCourse = async () => {
 	const course = new Course({
 		name: "Express Course",
 		// category: "network",
-		category: "sdlfjhlsk",
+		category: "-",
 		author: "Maxi",
 		tags: null,
 		isPublished: true,
