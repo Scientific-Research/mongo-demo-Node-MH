@@ -18,6 +18,7 @@ const courseSchema = new mongoose.Schema({
 		type: String,
 		required: true,
 		enum: ["web", "mobile", "network"],
+		lowercase: true,
 	},
 	author: String,
 	// tags: [String],
@@ -57,9 +58,10 @@ const createCourse = async () => {
 	const course = new Course({
 		name: "Express Course",
 		// category: "network",
-		category: "-",
+		category: "WEB",
 		author: "Maxi",
-		tags: null,
+		// tags: null,
+		tags: ["frontend"],
 		isPublished: true,
 		price: 15,
 	});
