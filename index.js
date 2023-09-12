@@ -52,6 +52,8 @@ const courseSchema = new mongoose.Schema({
 		},
 		min: 10,
 		max: 200,
+		get: (v) => Math.round(v),
+		set: (v) => Math.round(v),
 	},
 });
 // Models
@@ -65,7 +67,7 @@ const createCourse = async () => {
 		// tags: null,
 		tags: ["frontend"],
 		isPublished: true,
-		price: 15,
+		price: 15.5,
 	});
 	try {
 		const result = await course.save();
@@ -85,12 +87,14 @@ const getCourses = async () => {
 	const pageSize = 10;
 	//  /api/courses?pageNumber=2&pageSize=10
 	/////////////////////////////////////////////////
-	const courses = await Course.find({ author: "Mosh", isPublished: true })
+	const courses = await Course
+		// .find({ author: "Mosh", isPublished: true })
+		.find({ _id: "6500cc3db63d3bf72d0419ae" })
 		.limit(10)
 		// .limit(pageSize)
 		.sort({ name: -1 }) // 1: Ascending -1: Descending
-		.select({ name: 1, tags: 1, author: 1 });
-	console.log(courses);
+		.select({ name: 1, tags: 1, author: 1, price: 1 });
+	console.log(courses[0].price);
 };
 const updateCourse = async (id) => {
 	const course = await Course.findByIdAndUpdate(
@@ -111,4 +115,5 @@ const removeCourse = async (id) => {
 	console.log(course);
 };
 // removeCourse("64ff7c170244847a408a7093");
-createCourse();
+// createCourse();
+getCourses();
