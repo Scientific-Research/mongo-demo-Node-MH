@@ -51,7 +51,7 @@ const createCourse = async () => {
 		name: "Express Course",
 		category: "network",
 		author: "Maxi",
-		// tags: [],
+		tags: null,
 		isPublished: true,
 		price: 15,
 	});
